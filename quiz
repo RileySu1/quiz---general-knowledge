@@ -1,0 +1,129 @@
+# python quiz game
+
+def int_check(question):
+    while True:
+        to_check = input(question)
+
+
+# check that users have entered a valid option based on a list
+
+def string_checker(question, valid_ans=("yes", "no")):
+    while True:
+        # get user response and make sure it is lowercase
+        user_response = input(question).lower()
+
+        for item in valid_ans:
+            # check if the user response is a word in the list
+            if item == user_response:
+                return item
+
+            # check if the user response is the same as the first letter of the item
+            elif user_response == item[0]:
+                return item
+
+
+def instructions():
+    print('''
+
+    *** How to play ***
+
+    to begin the game will give you a question with a place to put your answers next to it.
+
+    If you get a question right the game will move on, and you will get a score of +1.
+
+    Please press xxx if you wish to exit the game
+
+    *** Good luck! ***
+
+    ''')
+
+
+want_instructions = string_checker("Would you like to see the instructions?").lower()
+if want_instructions == "yes":
+    instructions()
+elif want_instructions == "no":
+    print()
+
+# ask the user how many rounds they want to play
+
+def get_rounds():
+    while True:
+        try:
+            rounds = int(input("How many rounds would you like to play? "))
+            if rounds > 0:
+                return rounds
+            else:
+                print("please enter a number 1 to 10. ")
+        except ValueError:
+            print("Invalid input. Please enter a valid number. ")
+
+
+# ask the user if they are ready to play
+
+ready = string_checker("Are you ready to play?").lower()
+if ready == "yes":
+    print()
+elif ready == "no":
+    print()
+
+questions = ("Question #1 what is the capital of India?: ",
+             "Question #2 what is the population of India?:",
+             "Question #3 what is the largest planet in our solar system?: ",
+             "Question #4 how many bones in the human body?:",
+             "Question #5 what is the capital city of Canada?:",
+             "Question #6 what is the longest river in the world?:",
+             "Question #7 which country was the first to adopt a four-day work week nationwide?:",
+             "Question #8 what was the first video that was uploaded on youtube?",
+             "Question #9 how many continents are there?",
+             "Question #10 which youtuber was the first to hit 10 million subscribers?",)
+
+options = (("a. delhi","b. hyderabad","c. mumbai"),
+           ("a. 1.5 million","b. 1.4 billion","c. 300 million"),
+           ("a. mars","b. saturn","c. jupiter"),
+           ("a. 205","b. 206","c. 207"),
+           ("a. ottawa","b. vancouver","c. toronto"),
+           ("a. the Amazon", "b. the Nile River", "c. Yangtze River"),
+           ("a. Iceland", "b. Japan", "c. United Arab Emirates"),
+           ("a. Charlie bit my finger", "b. me at the zoo", "c. me at the beach"),
+           ("a. 7", "b. 10", "c. 15"),
+           ("a. PewDiePie", "b. Ryan's World", "c. Smosh"))
+
+answers = ("a","b","c","b","a","b","c","b","a","c")
+guesses = []
+score = 0
+question_num = 0
+
+for question in questions:
+    print("------------------")
+    print(question)
+    for option in options[question_num]:
+        print(option)
+    guess = input("enter (a, b, c) ").lower()
+
+    guesses.append(guess)
+    if guess == answers[question_num]:
+        score += 1
+        print("Correct!")
+    else:
+        print("Incorrect!")
+        print(f"{answers[question_num]} is the correct answer")
+    question_num += 1
+
+print("----------------")
+print("    Results     ")
+print("----------------")
+
+# game history for the user to see how many questions they got right
+
+print("answers: ", end="")
+for answer in answers:
+    print(answer, end=" ")
+print()
+print("guesses: ", end="")
+for guess in guesses:
+    print(guess, end=" ")
+print()
+
+score = int(score  / len(questions) * 100)
+print(f"your score is: {score}%")
+

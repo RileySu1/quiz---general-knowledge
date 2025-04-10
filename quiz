@@ -77,14 +77,14 @@ questions = ("Question #1 what is the capital of India?: ",
              "Question #9 how many continents are there?",
              "Question #10 which youtuber was the first to hit 10 million subscribers?",)
 
-options = (("a. delhi","b. hyderabad","c. mumbai"),
+options = (("a. Delhi","b. Hyderabad","c. Mumbai"),
            ("a. 1.5 million","b. 1.4 billion","c. 300 million"),
-           ("a. mars","b. saturn","c. jupiter"),
+           ("a. Mars","b. Saturn","c. Jupiter"),
            ("a. 205","b. 206","c. 207"),
-           ("a. ottawa","b. vancouver","c. toronto"),
+           ("a. Ottawa","b. Vancouver","c. Toronto"),
            ("a. the Amazon", "b. the Nile River", "c. Yangtze River"),
            ("a. Iceland", "b. Japan", "c. United Arab Emirates"),
-           ("a. Charlie bit my finger", "b. me at the zoo", "c. me at the beach"),
+           ("a. Charlie bit my finger", "b. Me at the zoo", "c. Me at the beach"),
            ("a. 7", "b. 10", "c. 15"),
            ("a. PewDiePie", "b. Ryan's World", "c. Smosh"))
 
@@ -98,7 +98,7 @@ for question in questions:
     print(question)
     for option in options[question_num]:
         print(option)
-    guess = input("enter (a, b, c) ").lower()
+    guess = string_checker("enter (a, b, c) ", ('a', 'b', 'c')).lower()
 
     guesses.append(guess)
     if guess == answers[question_num]:
@@ -126,4 +126,3 @@ print()
 
 score = int(score  / len(questions) * 100)
 print(f"your score is: {score}%")
-
